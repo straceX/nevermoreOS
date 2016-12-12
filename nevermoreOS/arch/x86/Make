@@ -1,9 +1,7 @@
-
+//Template
 nasm -f bin -o boot.bin boot.asm
-
-ld -o kernel.o -m elf_i386 -Ttext 0x100000 -N -e _KernelMain -Map kernel.map <object file list>
-
-objcopy -R .note -R .comment -S -O kernel.o kernel.bin 
+dd status=noxfer conv=notrunc if=boot.bin of=boot.flp
+qemu-system-i386 boot.flp
 
 
 
